@@ -938,10 +938,18 @@
                     </div>
                     <p class="project-description">Smart Commerce is a full-stack e-commerce platform I built to go beyond tutorial-level CRUD applications and implement the kind of distributed system architecture used in real production environments. Rather than a single monolithic backend, the entire system is decomposed into 7 independently deployable microservices, each owning its own responsibility — product catalog, cart, orders, payments, notifications, user management, and inventory. 
                         The goal wasn't just to make features work — it was to understand why production systems are built the way they are: how services discover each other, how they stay resilient when one fails, how to avoid hammering the database on every request, and how to process payments and notify users without tightly coupling every part of the system together.</p>
-                     <div class="The Problem I Was Solving">
-                        <p class="achievement-label">Most beginner e-commerce projects are built as a single Spring Boot application talking to one database — simple, but nothing like how real platforms (Amazon, Flipkart, etc.) actually operate. I wanted to answer a harder question:</p>
+                     <div class="Architecture">
+                        <p class="architecture-label">Architecture</p>
+                         <p class="project-description">The system follows a microservices architecture with the following core components:</p>
                         <ul>
-                            <li>If one part of this system fails, does the whole platform go down? If traffic spikes on the product page, does the database fall over? If a payment succeeds, how does the rest of the system find out — reliably?</li>
+                            <li>API Gateway (Spring Cloud Gateway) — single entry point for all client requests;
+                                handles routing, load balancing, and CORS centrally instead of duplicating that logic across services.</li>
+                            <li>Service Discovery (Netflix Eureka) — services register themselves dynamically and discover each other at runtime instead of relying on hardcoded URLs, 
+                                using RestTemplate for inter-service calls.</li>
+                            <li>7 Independent Services — Product, Cart, Order, Payment, Notification, User/Auth, and Inventory — each with its own database schema and deployment lifecycle.</li>
+                            <li>Event-Driven Communication (Apache Kafka) — services don't call each other synchronously for every action. When a payment succeeds, an event is published to Kafka, and the Notification service consumes it independently to trigger real-time order confirmations — decoupling payment processing from notification delivery.</li>
+                            <li>Caching Layer (Redis) — frequently-read data like product listings is cached to avoid repeated database hits under load.</li>
+                            <li>Resilience Layer (Resilience4j) — Circuit Breaker pattern wraps inter-service calls, so if one service goes down, the system fails gracefully instead of cascading failures across the platform.</li>
                         </ul>
                     </div>
                      <div class="achievements">
