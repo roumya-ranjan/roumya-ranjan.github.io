@@ -934,12 +934,17 @@
                             <span class="tech-tag">React.js</span>
                             <span class="tech-tag">Docker, Docker Compose, Render (backend hosting)</span>
                             <span class="tech-tag">Netflix Eureka</span>
-                            <span class="tech-tag"></span>
                         </div>
                     </div>
                     <p class="project-description">Smart Commerce is a full-stack e-commerce platform I built to go beyond tutorial-level CRUD applications and implement the kind of distributed system architecture used in real production environments. Rather than a single monolithic backend, the entire system is decomposed into 7 independently deployable microservices, each owning its own responsibility — product catalog, cart, orders, payments, notifications, user management, and inventory. 
                         The goal wasn't just to make features work — it was to understand why production systems are built the way they are: how services discover each other, how they stay resilient when one fails, how to avoid hammering the database on every request, and how to process payments and notify users without tightly coupling every part of the system together.</p>
-                    <div class="achievements">
+                     <div class="The Problem I Was Solving">
+                        <p class="achievement-label">Most beginner e-commerce projects are built as a single Spring Boot application talking to one database — simple, but nothing like how real platforms (Amazon, Flipkart, etc.) actually operate. I wanted to answer a harder question:</p>
+                        <ul>
+                            <li>If one part of this system fails, does the whole platform go down? If traffic spikes on the product page, does the database fall over? If a payment succeeds, how does the rest of the system find out — reliably?</li>
+                        </ul>
+                    </div>
+                     <div class="achievements">
                         <p class="achievement-label">Key Achievements</p>
                         <ul>
                             <li>Implemented Spring Security with JWT authentication for robust data privacy</li>
