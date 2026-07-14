@@ -939,7 +939,7 @@
                     <p class="project-description">Smart Commerce is a full-stack e-commerce platform I built to go beyond tutorial-level CRUD applications and implement the kind of distributed system architecture used in real production environments. Rather than a single monolithic backend, the entire system is decomposed into 7 independently deployable microservices, each owning its own responsibility — product catalog, cart, orders, payments, notifications, user management, and inventory. 
                         The goal wasn't just to make features work — it was to understand why production systems are built the way they are: how services discover each other, how they stay resilient when one fails, how to avoid hammering the database on every request, and how to process payments and notify users without tightly coupling every part of the system together.</p>
                      <div class="Architecture">
-                        <p class="architecture-label">Architecture</p>
+                        <p class="Architecture-label">Architecture</p>
                          <p class="project-description">The system follows a microservices architecture with the following core components:</p>
                         <ul>
                             <li>API Gateway (Spring Cloud Gateway) — single entry point for all client requests;
@@ -952,15 +952,24 @@
                             <li>Resilience Layer (Resilience4j) — Circuit Breaker pattern wraps inter-service calls, so if one service goes down, the system fails gracefully instead of cascading failures across the platform.</li>
                         </ul>
                     </div>
-                     <div class="achievements">
-                        <p class="achievement-label">Key Achievements</p>
+                     <div class="Key Features">
+                        <p class="Key Features-label">Key Features</p>
                         <ul>
-                            <li>Implemented Spring Security with JWT authentication for robust data privacy</li>
-                            <li>Supported 200 concurrent user sessions with transactional integrity</li>
-                            <li>Integrated SMS alerts via Twilio for real-time patient notifications</li>
-                            <li>Containerized application with Docker for easy deployment across environments</li>
-                            <li>Documented APIs with Swagger for developer-friendly interface</li>
-                            <li>Achieved 90% test coverage using JUnit for reliability</li>
+                            <li>Secure authentication & authorization — JWT-based auth with role-based access control (ADMIN / USER), so admins and customers have distinctly scoped permissions across every service.</li>
+                            <li>Real payment integration — Razorpay gateway supporting UPI, Credit/Debit Card, Net Banking, and Cash on Delivery — not a mocked payment flow.</li>
+                            <li>Real-time order notifications — triggered automatically via Kafka the moment a payment is confirmed, with no manual polling or tight coupling between the Payment and Notification services.</li>
+                            <li>Automatic stock management — inventory is decremented at the moment of order placement and reflected in real time across all services that read stock data.</li>
+                            <li>Fully containerized deployment — all 7 services are containerized using Docker with docker-compose for local orchestration; deployed live with backend on Render and frontend on Vercel, using environment-based configuration for secrets and service URLs.</li>
+                        </ul>
+                    </div>
+                     <div class="Results & Impact">
+                        <p class="Results & Impact-label">Results & Impact</p>
+                        <ul>
+                            <li>Reduced product listing response time by 40% through Redis caching.</li>
+                            <li>Built and deployed 7 independently deployable microservices with dynamic service discovery</li>
+                            <li>Implemented a fully working event-driven payment-to-notification pipeline using Kafka</li>
+                            <li>Achieved fault-tolerant inter-service communication using the Circuit Breaker pattern</li>
+                            <li>Fully containerized and deployed the system with real, working payment processing (not mocked)</li>
                         </ul>
                     </div>
                 </div>
